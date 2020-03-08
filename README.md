@@ -39,4 +39,6 @@ Throw baddies at the wall to destroy them.
 
 See "docs/info.html" for further instructions on how to play the game.
 
+-------------------------------------------------------
 
+The port is based on Spot's SDL1 source codes (see OS4Depot.net).
