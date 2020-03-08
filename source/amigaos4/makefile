@@ -36,10 +36,10 @@ methane: MainSource/gfxoff.o MainSource/baddie.o MainSource/bitdraw.o MainSource
 	$(STRIP) methane
 
 clean:
-	@rm -Rf MainSource
-	@rm -Rf MainData
-	@rm -Rf MainGp2x
-	@rm -Rf MainMikMod
+	@rm -f MainSource/*.o
+	@rm -f MainData/*.o
+	@rm -f MainGp2x/*.o
+	@rm -f MainMikMod/*.o
 	@rm -f methane
 
 distclean: clean
