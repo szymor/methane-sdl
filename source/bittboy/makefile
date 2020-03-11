@@ -1,19 +1,14 @@
-DEVKITGP2X_BASE=/devkitGP2X
+SDL_BASE = /opt/miyoo/arm-miyoo-linux-uclibcgnueabi/sysroot/usr/bin/
+LDFLAGS = `$(SDL_BASE)sdl-config --libs`
 
-SDL_BASE =
-LDFLAGS = 
+CXX = arm-linux-g++
+STRIP = arm-linux-strip
 
-CXX = g++
-STRIP = strip
-
-CFLAGS = `$(SDL_BASE)sdl-config --cflags` -O2 -Wall -I/sdk/local/newlib/include/SDL -I/sdk/local/common/include/SDL 
 CXXFLAGS = `$(SDL_BASE)sdl-config --cflags` -O2 -Wall -fsigned-char
-GP2X_LIBS = `$(SDL_BASE)sdl-config --libs`
-
 
 # Remove the following two lines to disable sound
-METHANE_SND_FLAGS = -DMETHANE_MIKMOD `libmikmod-config --cflags`
-METHANE_SND_LIBS = `libmikmod-config --libs`
+#METHANE_SND_FLAGS = -DMETHANE_MIKMOD `libmikmod-config --cflags`
+#METHANE_SND_LIBS = `libmikmod-config --libs`
 all: message methane
 
 # Methane brothers with sound
@@ -32,7 +27,7 @@ methane: MainSource/gfxoff.o MainSource/baddie.o MainSource/bitdraw.o MainSource
 	MainSource/misc.o MainSource/objlist.o MainSource/player.o MainSource/power.o MainSource/target.o \
 	MainSource/suck.o MainSource/weapon.o MainSource/sound.o MainData/snddata.o MainData/gfxdata.o MainData/gfxdata2.o \
 	MainData/gfxdata3.o MainData/mapdata.o MainGp2x/SDL_framerate.o MainGp2x/doc.o MainMikMod/audiodrv.o \
-	-o methane ${METHANE_LIBS} ${METHANE_SND_LIBS} ${GP2X_LIBS} ${LDFLAGS}
+	-o methane ${METHANE_LIBS} ${METHANE_SND_LIBS} ${LDFLAGS}
 	$(STRIP) methane
 
 clean:
@@ -57,8 +52,8 @@ MainData/%.o : ../data/%.cpp
 	@if [ ! -d MainData ]; then mkdir MainData; fi
 	${CXX} ${CXXFLAGS} ${METHANE_FLAGS} ${METHANE_SND_FLAGS} -I ../ -c $< -o $@
 
-# The Gp2x source code
-MainGp2x/%.o : ../gp2x/%.cpp
+# The Bittboy source code
+MainGp2x/%.o : ../bittboy/%.cpp
 	@echo "  Compiling $<..."
 	@if [ ! -d MainGp2x ]; then mkdir MainGp2x; fi
 	${CXX} ${CXXFLAGS} ${METHANE_FLAGS} ${METHANE_SND_FLAGS} -I ../ -c $< -o $@
