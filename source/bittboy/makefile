@@ -1,4 +1,4 @@
-SDL_BASE = /opt/miyoo/arm-miyoo-linux-uclibcgnueabi/sysroot/usr/bin/
+SDL_BASE = /opt/miyoo/arm-buildroot-linux-musleabi/sysroot/usr/bin/
 LDFLAGS = `$(SDL_BASE)sdl-config --libs`
 
 CXX = arm-linux-g++
@@ -7,8 +7,8 @@ STRIP = arm-linux-strip
 CXXFLAGS = `$(SDL_BASE)sdl-config --cflags` -O2 -Wall -fsigned-char
 
 # Remove the following two lines to disable sound
-#METHANE_SND_FLAGS = -DMETHANE_MIKMOD `libmikmod-config --cflags`
-#METHANE_SND_LIBS = `libmikmod-config --libs`
+METHANE_SND_FLAGS = -DMETHANE_MIKMOD `$(SDL_BASE)libmikmod-config --cflags`
+METHANE_SND_LIBS = `$(SDL_BASE)libmikmod-config --libs`
 all: message methane
 
 # Methane brothers with sound
