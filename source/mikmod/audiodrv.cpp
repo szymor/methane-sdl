@@ -150,6 +150,14 @@ void CMikModDrv::InitDriver(void)
 	}
 	MikMod_RegisterDriver(&drv_nos);
 #else		// Must be Linux
+	if (drv_sdl.Name)	// Valid SDL driver
+	{
+		if (drv_sdl.CommandLine)	// Valid Commandline
+		{
+			drv_sdl.CommandLine("buffer=14");
+		}
+		MikMod_RegisterDriver(&drv_sdl);
+	}
 	if (drv_oss.Name)	// Valid OSS driver
 	{
 		if (drv_oss.CommandLine)	// Valid Commandline
