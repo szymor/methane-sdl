@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=SMB
+Comment=Super Methane Brothers
+Exec=methane
+Terminal=false
+Type=Game
+StartupNotify=true
+Icon=icon
+Categories=games;
+Version=20200825
+X-OD-Manual=readme.txt

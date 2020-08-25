@@ -30,6 +30,11 @@ methane: MainSource/gfxoff.o MainSource/baddie.o MainSource/bitdraw.o MainSource
 	-o methane ${METHANE_LIBS} ${METHANE_SND_LIBS} ${LDFLAGS}
 	$(STRIP) methane
 
+opk: methane
+	rm -rf opkg/methane
+	cp methane opkg/
+	mksquashfs opkg methane.opk -noappend -no-xattrs
+
 clean:
 	@rm -f MainSource/*.o
 	@rm -f MainData/*.o
