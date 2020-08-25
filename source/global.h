@@ -21,6 +21,8 @@
 
 #ifndef METHANE_OLD_CPP_NEW
 #include <new>
+#include <cstddef>
+using namespace std;
 #endif
 
 #ifndef METHANE_OLD_CPP
